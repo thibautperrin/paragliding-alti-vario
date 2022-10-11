@@ -28,12 +28,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.android.thibautperrin.parapente"
         minSdk 28
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
@@ -50,15 +50,17 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.android.thibautperrin.parapente'
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'com.google.android.gms:play-services-wearable:17.1.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'com.google.android.gms:play-services-wearable:18.0.0'
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.wear:wear:1.2.0'
+    implementation "io.insert-koin:koin-android:3.2.2"
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

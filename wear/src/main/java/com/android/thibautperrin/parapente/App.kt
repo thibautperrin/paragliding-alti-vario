@@ -22,13 +22,30 @@
  * SOFTWARE.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    id 'com.android.application' version '7.3.0' apply false
-    id 'com.android.library' version '7.3.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
-}
+package com.android.thibautperrin.parapente
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+import android.app.Application
+import android.hardware.SensorManager
+import android.location.LocationManager
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.GlobalContext.startKoin
+import org.koin.dsl.module
+
+class App : Application() {
+
+    private val appModule = module {
+        single { getSystemService(SENSOR_SERVICE) as SensorManager }
+        single { getSystemService(LOCATION_SERVICE) as LocationManager }
+        single { SensorsDataManager(get(), get(), this@App.filesDir) }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidLogger()
+            androidContext(this@App)
+            modules(appModule)
+        }
+    }
 }

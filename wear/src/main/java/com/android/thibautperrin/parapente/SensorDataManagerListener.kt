@@ -22,13 +22,32 @@
  * SOFTWARE.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    id 'com.android.application' version '7.3.0' apply false
-    id 'com.android.library' version '7.3.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
-}
+package com.android.thibautperrin.parapente
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+interface SensorDataManagerListener {
+
+
+    fun onIsRecordingChanged(isRecording: Boolean)
+
+    /**
+     * Horizontal speed from locationManager (GPS) in m/s
+     */
+    fun onNewHorizontalSpeed(speed: Float)
+
+    /**
+     * Elevation/Altitude above sea level (or more exactly above geoid WGS84) from locationManager (GPS) in meters
+     */
+    fun onNewElevation(elevation: Float)
+
+    /**
+     * Pressure from the dedicated micro-electro-mechanical-system (MEMS) (=Harware in the android Wear device), in hPa (hecto Pascal)
+     */
+    fun onNewPressure(pressure: Float)
+
+    /**
+     * Vertical speed estimated from the pressure variation using a conversion factor of 9,7 m / hPa
+     * This approximation can be particularly wrong at very high altitude (> 3000m) or with very low/high temperature)
+     * TODO : A better approximation, taking these variables into account will be used in a close future.
+     */
+    fun onNewVerticalSpeed(verticalSpeed: Float)
 }

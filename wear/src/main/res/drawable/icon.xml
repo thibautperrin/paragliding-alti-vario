@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ MIT License
   ~
@@ -22,15 +23,14 @@
   ~ SOFTWARE.
   -->
 
-<resources>
-    <string name="app_name">Parapente</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
-    <string name="notification_title">Paragliding</string>
-    <string name="notification_message">Capturing your fly</string>
-    <string name="channel_name">Recording service notification</string>
-    <string name="channel_description">Notifications used to have the app in foregound allowing to record your fly in background</string>
-</resources>
+<foreground xmlns:android="http://schemas.android.com/apk/res/android">
+    <inset
+        android:insetBottom="18dp"
+        android:insetLeft="18dp"
+        android:insetRight="18dp"
+        android:insetTop="18dp">
+        <shape android:shape="oval">
+            <solid android:color="#0000FF" />
+        </shape>
+    </inset>
+</foreground>
